@@ -1,13 +1,13 @@
 @extends('templateback')
 @section('titre')
-<title>Modifier un lieu</title>
+<title>Ajouter un type depense</title>
 @endsection
 @section('content')
 
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Form Elements</h1>
+      <h1>Ajout type depense</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -23,7 +23,7 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">General Form Elements</h5>
+              <h5 class="card-title">Remplissez le formulaire</h5>
 
               <!-- General Form Elements -->
               <form action="{{ url('/ajoutTyperecette') }}" method="post">

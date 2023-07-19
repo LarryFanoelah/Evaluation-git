@@ -7,12 +7,11 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Form Elements</h1>
+      <h1>Ajouter un patient</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Forms</li>
-          <li class="breadcrumb-item active">Elements</li>
+          <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+          <li class="breadcrumb-item">Liste</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -23,7 +22,7 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">General Form Elements</h5>
+              <h5 class="card-title">Veuiller remplir le formulaire</h5>
 
               <!-- General Form Elements -->
               <form action="{{ url('/ajoutPatient') }}" method="post">
@@ -36,7 +35,7 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label">Type</label>
+                        <label class="col-sm-2 col-form-label">Date de naissance</label>
                         <div class="col-sm-10" >
                         <input type="date" name="date_naissance" class="form-control">
                         </div>

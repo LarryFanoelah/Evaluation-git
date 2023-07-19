@@ -1,18 +1,17 @@
 @extends('templatefront')
 @section('titre')
-<title>Modifier un artiste</title>
+<title>Modifier depense</title>
 @endsection
 @section('content')
 
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Form Elements</h1>
+        <h1>Modifier depense</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item">Forms</li>
-                <li class="breadcrumb-item active">Elements</li>
+                <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+                <li class="breadcrumb-item">Liste</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -23,7 +22,7 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">General Form Elements</h5>
+                        <h5 class="card-title">Modifier les donnees</h5>
 
                         <!-- General Form Elements -->
                         <form action="{{ url('/modifDepense') }}" method="post">
@@ -38,6 +37,7 @@
                                     <select name="idtypedepense" class="form-select"
                                         aria-label="Default select example">
                                         <option value="">type depense </option>
+
                                         @foreach ($data1 as $data)
                                         <option value="{{ $data->idtypedepense }}">{{$data->nom}}</option>
                                         @endforeach

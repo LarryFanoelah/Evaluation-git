@@ -11,9 +11,8 @@
   <h1>Liste Facture avec nom patient</h1>
   <nav>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-      <li class="breadcrumb-item">Tables</li>
-      <li class="breadcrumb-item active">General</li>
+      <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+      <li class="breadcrumb-item">Liste</li>
     </ol>
   </nav>
 </div>
@@ -59,9 +58,9 @@
 
                                 <tbody>
                                     @foreach($liste as $liste)
-                                    <tr  class="table-primary">
+                                    <tr  class="table-primary" >
                                         <td>{{ $liste->idfacturerecette}}</td>
-                                        <td>{{ $liste->date_facture}}</td>
+                                        <td>{{ \Carbon\Carbon::parse($liste->date_facture)->locale('fr_FR')->isoFormat('DD MMMM YYYY') }}</td>
                                         <td>{{ $liste->nom}}</td>
 
 

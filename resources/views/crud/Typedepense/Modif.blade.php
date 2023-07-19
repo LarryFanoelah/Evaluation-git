@@ -1,18 +1,17 @@
 @extends('templateback')
 @section('titre')
-<title>Modifier un artiste</title>
+<title>Modifier type depense</title>
 @endsection
 @section('content')
 
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Form Elements</h1>
+      <h1>Modifier un type depense</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Forms</li>
-          <li class="breadcrumb-item active">Elements</li>
+          <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+          <li class="breadcrumb-item">Liste</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -23,7 +22,7 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">General Form Elements</h5>
+              <h5 class="card-title">Modifier les donnees</h5>
 
               <!-- General Form Elements -->
               <form action="{{ url('/modifTypedepense') }}" method="post">
@@ -43,7 +42,7 @@
                         <input type="texte" name="type" value= "{{ $data->type }}"  class="form-control">
                         </div>
                     </div>
-                    
+
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Budget</label>
                         <div class="col-sm-10" >

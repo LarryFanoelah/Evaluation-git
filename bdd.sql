@@ -2,12 +2,12 @@
 -- create role clinique login password 'clinique';
 -- alter database clinique owner to clinique;
 
---drop view vue_bord_benefice;
---drop view vue_benefice;
---drop view vue_bord_depense;
---drop view vue_bord_recette;
---drop view v_date_recette;
---drop view v_date_depense;
+-- drop view vue_bord_benefice;
+-- drop view vue_benefice;
+-- drop view vue_bord_depense;
+-- drop view vue_bord_recette;
+-- drop view v_date_recette;
+-- drop view v_date_depense;
 -- drop view vue_recettes;
 -- drop view vue_facture_patient;
 -- drop view v_depenses;

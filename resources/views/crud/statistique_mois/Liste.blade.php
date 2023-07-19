@@ -11,9 +11,8 @@
   <h1>Tableu de bord </h1>
   <nav>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-      <li class="breadcrumb-item">Tables</li>
-      <li class="breadcrumb-item active">General</li>
+      <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+   li>
     </ol>
   </nav>
 </div>
@@ -111,19 +110,22 @@
                                     ?>
                                     <tr  class="table-primary ">
                                         <td>{{ $liste->nom}}</td>
-                                        <td>{{ $liste->reel}}</td>
-                                        <td>{{ $liste->budget}}</td>
+                                        <td>{{ number_format($liste->reel, 2, ',', ' ') }}</td>
+                                        <td>{{ number_format($liste->budget, 2, ',', ' ') }}</td>
                                         <td>{{ $liste->realisation}}</td>
                                     </tr>
                                     @endforeach
                                     <tr  class="table-primary ">
                                         <td></td>
-                                        <td>{{ $totalrecette}}</td>
-                                        <td>{{ $totalbudgetrecette}}</td>
-                                        <td>{{ round($totalrecette*100/$totalbudgetrecette,0)}}</td>
+                                        <td>{{ number_format($totalrecette, 2, ',', ' ') }}</td>
+                                        <td>{{ number_format($totalbudgetrecette, 2, ',', ' ') }}</td>
+                                        <td>{{ number_format(round($totalrecette * 100 / $totalbudgetrecette, 0), 0, ',', ' ') }}</td>
                                     </tr>
                              </tbody>
                              </table>
+
+
+
                              <?php }?>
                              <?php if(isset($listedepense)) {?>
                                 <h3>Depense</h3>
@@ -154,16 +156,16 @@
                                 ?>
                                     <tr  class="table-primary ">
                                         <td>{{ $liste->nom}}</td>
-                                        <td>{{ $liste->reel}}</td>
-                                        <td>{{ $liste->budget}}</td>
+                                        <td>{{ number_format($liste->reel, 2, ',', ' ') }}</td>
+                                        <td>{{ number_format($liste->budget, 2, ',', ' ') }}</td>
                                         <td>{{ $liste->realisation}}</td>
                                     </tr>
                                     @endforeach
                                     <tr  class="table-primary ">
                                         <td></td>
-                                        <td>{{ $totaldepense}}</td>
-                                        <td>{{ $totalbudgetdepense}}</td>
-                                        <td>{{ round($totaldepense*100/$totalbudgetdepense,0)}}</td>
+                                        <td>{{ number_format($totaldepense, 2, ',', ' ') }}</td>
+                                        <td>{{ number_format($totalbudgetdepense, 2, ',', ' ') }}</td>
+                                        <td>{{ number_format(round($totaldepense * 100 / $totalbudgetdepense, 0), 0, ',', ' ') }}</td>
                                     </tr>
                              </tbody>
                             </table>
@@ -186,21 +188,22 @@
 
                                     <tr  class="table-primary ">
                                         <td>Recette</td>
-                                        <td>{{ $listebenefice->recette}}</td>
-                                        <td>{{ $listebenefice->budget_recette}}</td>
-                                        <td>{{ $listebenefice->realisation_recette}}</td>
+                                        <td>{{ number_format($listebenefice->recette, 2, ',', ' ') }}</td>
+                                        <td>{{ number_format($listebenefice->budget_recette, 2, ',', ' ') }}</td>
+                                        <td>{{ number_format($listebenefice->realisation_recette, 2, ',', ' ') }}</td>
                                     </tr>
+
                                     <tr  class="table-primary ">
                                         <td>Depense</td>
-                                        <td>{{ $listebenefice->depense}}</td>
-                                        <td>{{ $listebenefice->budget_depense}}</td>
-                                        <td>{{ $listebenefice->realisation_depense}}</td>
+                                        <td>{{ number_format($listebenefice->depense, 2, ',', ' ') }}</td>
+                                        <td>{{ number_format($listebenefice->budget_depense, 2, ',', ' ') }}</td>
+                                        <td>{{ number_format($listebenefice->realisation_depense, 2, ',', ' ') }}</td>
                                     </tr>
                                     <tr  class="table-primary ">
                                         <td></td>
-                                        <td>{{ $listebenefice->recette - $listebenefice->depense}}</td>
-                                        <td>{{ $listebenefice->budget_recette - $listebenefice->budget_depense}}</td>
-                                        <td>{{ round(($listebenefice->recette - $listebenefice->depense)*100/($listebenefice->budget_recette - $listebenefice->budget_depense),0)}}</td>
+                                        <td>{{ number_format($listebenefice->recette - $listebenefice->depense, 2, ',', ' ') }}</td>
+                                        <td>{{ number_format($listebenefice->budget_recette - $listebenefice->budget_depense, 2, ',', ' ') }}</td>
+                                        <td>{{ number_format(round(($listebenefice->recette - $listebenefice->depense) * 100 / ($listebenefice->budget_recette - $listebenefice->budget_depense), 0), 0, ',', ' ') }}</td>
                                     </tr>
                              </tbody>
                             </table>

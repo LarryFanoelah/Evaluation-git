@@ -65,7 +65,7 @@
                                         <td>{{ $liste->idtyperecette}}</td>
                                         <td>{{ $liste->nom}}</td>
                                         <td>{{ $liste->type}}</td>
-                                        <td>{{ $liste->budget}}</td>
+                                        <td>{{ number_format($liste->budget, 2, ',', ' ') }}</td>
                                         <td>{{ $liste->code}}</td>
 
 

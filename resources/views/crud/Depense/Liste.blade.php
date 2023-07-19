@@ -11,9 +11,9 @@
   <h1>Liste  depense</h1>
   <nav>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
       <li class="breadcrumb-item">Tables</li>
-      <li class="breadcrumb-item active">General</li>
+
     </ol>
   </nav>
 </div>
@@ -67,10 +67,10 @@
                                         <td>{{ $liste->iddepense}}</td>
                                         <td>{{ $liste->nom_typedepense}}</td>
                                         <td>{{ $liste->type}}</td>
-                                        <td>{{ $liste->date_depense}}</td>
-                                        <td>{{ $liste->nombre}}</td>
-                                        <td>{{ $liste->montant}}</td>
-                                        <td>{{ $liste->montant_total}}</td>
+                                        <td>{{ \Carbon\Carbon::parse($liste->date_depense)->locale('fr_FR')->isoFormat('DD MMMM YYYY') }}</td>
+                                        <td>{{ number_format($liste->nombre, 2, ',', ' ') }}</td>
+                                        <td>{{ number_format($liste->montant, 2, ',', ' ') }}</td>
+                                        <td>{{ number_format($liste->montant_total, 2, ',', ' ') }}</td>
 
 
                                         <td><a class="btn btn-success" href="{{ url('modifformDepense') }}/{{ $liste->iddepense }}">Modifier</a></td>
@@ -90,6 +90,9 @@
                         </form>
                         <br>
                              <a class="btn btn-primary" href="{{ url('/ajoutformDepense') }}" >Ajouter</a>
+                        <br>
+                        <br>
+                             <a class="btn btn-primary" href="{{ url('/formsave') }}" >Ajouter depense</a>
                         <br>
                 </div>
         </div>

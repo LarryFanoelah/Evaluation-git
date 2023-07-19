@@ -65,8 +65,8 @@
                                     <tr  class="table-primary text-center">
                                         <td>{{ $liste->idrecette}}</td>
                                         <td>{{ $liste->idfacturerecette}}</td>
-                                        <td>{{ $liste->date_facture}}</td>
-                                        <td>{{ $liste->montant_total}}</td>
+                                        <td>{{ \Carbon\Carbon::parse($liste->date_facture)->locale('fr_FR')->isoFormat('DD MMMM YYYY') }}</td>
+                                        <td>{{ number_format($liste->montant_total, 2, ',', ' ') }}</td>
                                         <td>{{ $liste->nom_typerecette}}</td>
                                         <td>{{ $liste->nom_patient}}</td>
 

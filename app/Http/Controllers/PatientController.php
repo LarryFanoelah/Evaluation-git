@@ -46,7 +46,7 @@ class PatientController extends Controller
         public function ajoutPatient (Request $request){
             $data = $request->all();
             Patient::create($data);
-            return redirect("listePatient")->with('success', 'Disque ajoute avec succes !');
+            return redirect("listePatient")->with('success', 'ajout avec succes !');
             }
 
             //form vers modifier
@@ -59,7 +59,7 @@ class PatientController extends Controller
                     'data1' => $data1
 
                 ]);
-                
+
 
             }
 

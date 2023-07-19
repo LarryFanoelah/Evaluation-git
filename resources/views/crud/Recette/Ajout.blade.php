@@ -7,7 +7,7 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Form Elements</h1>
+      <h1>Ajouter une recette</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -23,7 +23,7 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">General Form Elements</h5>
+              <h5 class="card-title">Remplir formulaire</h5>
 
               <!-- General Form Elements -->
               <form action="{{ url('/ajoutRecette') }}" method="post">

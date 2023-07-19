@@ -47,7 +47,7 @@ class DepenseController extends Controller
                     ]);
                 }
 
-                return redirect()->back()->with('success','Information enregistree');
+                return redirect("listeDepense")->with('success','Information enregistree');
 
             }
 
@@ -127,7 +127,7 @@ class DepenseController extends Controller
             public function ajoutDepense (Request $request){
                 $data = $request->all();
                 Depense::create($data);
-                return redirect("listeDepense")->with('success', 'Disque ajoute avec succes !');
+                return redirect("listeDepense")->with('success', 'Ajout du depense avec succes !');
                 }
 
                 //form vers modifier
@@ -149,7 +149,7 @@ class DepenseController extends Controller
                 public function modifDepense(Request $request)
                 {
                     $data2 = $request->all();
-                    $item = Depense::findOrFail(request('idDepense'));
+                    $item = Depense::findOrFail(request('iddepense'));
                     $item->update($data2);
                     return redirect("listeDepense")->with('modification', 'Modification effectué avec succes !');
                 }

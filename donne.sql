@@ -8,8 +8,8 @@ INSERT INTO patient (nom, date_naissance, remboursement, idgenre) VALUES
 
 
 
-insert into typeDepense (nom , "type",budget,code) values ('loyer','mois',1000000.00,'LOY'),('salaire','mois',200000.00,'SAL'),('Achat medoc','jour',3990.00,'MEDOC');
-insert into typeRecette (nom , "type",budget,code) values ('consultation','heure',1000000.00,'CONS'),('operation','heure',1000000.00,'OPE'),('analyse','jour',1000000.00,'ANAL'),('chambre','jour',1000000.00,'CHA');
+insert into typeDepense (nom , "type",budget,code) values ('loyer','mois',1000000.00,'LOY'),('reparation','mois',200000.00,'REP'),('salaire','jour',3990.00,'SAL');
+insert into typeRecette (nom , "type",budget,code) values ('consultation','heure',1000000.00,'CONS'),('Medicament','heure',1000000.00,'MED'),('analyse','jour',1000000.00,'ANAL');
 
 INSERT INTO depense (idtypedepense, date_depense, nombre, montant) VALUES
 (1, '2023-01-01', 10, 100.00),
