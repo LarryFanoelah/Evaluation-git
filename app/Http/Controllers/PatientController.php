@@ -11,7 +11,7 @@ class PatientController extends Controller
 {
         //liste disque Patient
         public function listePatient(){
-            $perPage = 10; // Nombre d'éléments par page
+            $perPage = 100; // Nombre d'éléments par page
             $currentPage = request()->query('page', 1); // Page actuelle
 
             $liste = v_patient_genre::paginate($perPage, ['*'], 'page', $currentPage);

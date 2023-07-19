@@ -12,7 +12,7 @@ class RecetteController extends Controller
 {
                 //liste disque Recette
                 public function listeRecette(){
-                    $perPage = 10; // Nombre d'éléments par page
+                    $perPage = 100; // Nombre d'éléments par page
                     $currentPage = request()->query('page', 1); // Page actuelle
 
                     $liste = vue_recettes::paginate($perPage, ['*'], 'page', $currentPage);

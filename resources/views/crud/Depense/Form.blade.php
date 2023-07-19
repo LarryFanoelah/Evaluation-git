@@ -25,6 +25,8 @@
             <div class="card-body">
               <h5 class="card-title">Saisie d'un nouveau depense</h5>
 
+
+
               <!-- General Form Elements -->
               <form action="{{ url('/enregistrer') }}" method="post">
               {{ csrf_field() }}
@@ -61,7 +63,7 @@
                   <div class="row mb-3">
                         <div class="col-md-12">
                             <div class="form-floating">
-                            <input type="number" name="jour" class="form-control" id="floatingZip" placeholder="jour"  min="1" max="31" required />
+                            <input type="number" name="jour" class="form-control" id="floatingZip" placeholder="jour"   />
                             <label for="floatingZip">jour</label>
                          </div>
                 </div>
@@ -69,7 +71,7 @@
                 <div class="row mb-3">
                 <div class="col-md-12">
                     <div class="form-floating">
-                    <input type="number" name="annee" class="form-control" id="floatingZip" placeholder="annee"   min="1900" max="2023" required />
+                    <input type="number" name="annee" class="form-control" id="floatingZip" placeholder="annee"   />
                         <label for="floatingZip">annee</label>
                     </div>
                 </div>

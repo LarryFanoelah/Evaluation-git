@@ -37,6 +37,14 @@
     </div>
  @endif
 
+
+{{ csrf_field() }}
+@if(session('erreur'))
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+    {{ session('erreur') }}
+    </div>
+ @endif
+
 <section class="section">
   <div class="row">
         <div class="col-lg-6">

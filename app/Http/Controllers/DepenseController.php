@@ -38,12 +38,21 @@ class DepenseController extends Controller
             {
                 $mois=$request->input('mois');
                 foreach($mois as $mois){
+                    if (checkdate($mois, $request->input('jour'), $request->input('annee'))==false){
+
+                        return redirect("listeDepense")->with('erreur','date invalide');
+
+                    }
+                }
+                $m=$request->input('mois');
+
+                foreach($m as $mois){
                     $timestamp = Carbon::create($request->input('annee'), $mois, $request->input('jour'));
                     $depense=depense::create([
-                                'idtypedepense' =>$request->input('idtypedepense'),
-                                'montant'=>$request->input('montant'),
-                                'nombre'=>$request->input('nombre'),
-                                'date_depense'=>$timestamp
+                        'idtypedepense' =>$request->input('idtypedepense'),
+                        'montant'=>$request->input('montant'),
+                        'nombre'=>$request->input('nombre'),
+                        'date_depense'=>$timestamp
                     ]);
                 }
 
@@ -54,29 +63,6 @@ class DepenseController extends Controller
 
 
 
-            // public function enregistrer(Request $request)
-            // {
-
-            //     $data = $request->all();
-            //         $depense = new Depense;
-
-            //         $jour = $request->input('jour');
-            //         $month = $request->input('mois');
-            //         $annee = $request->input('annee');
-
-
-            //         $mois = implode(',', $month);
-            //         $date = Carbon::createFromFormat('Y-m-d', $annee . '-' . $mois . '-' . $jour);
-            //         $depense->date_depense = $date->format('Y-m-d');
-            //         Depense::create($data);
-            //         $depense->save();
-
-            //         return 'Enregistrement réussi !';
-
-
-
-
-            // }
 
             public function importCSV(Request $request)
             {

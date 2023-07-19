@@ -10,7 +10,7 @@ class TypedepenseController extends Controller
 
     //liste disque Typedepense
     public function listeTypedepense(){
-        $perPage = 10; // Nombre d'éléments par page
+        $perPage = 100; // Nombre d'éléments par page
         $currentPage = request()->query('page', 1); // Page actuelle
 
         $liste = Typedepense::paginate($perPage, ['*'], 'page', $currentPage);
@@ -40,7 +40,7 @@ class TypedepenseController extends Controller
     public function ajoutTypedepense (Request $request){
         $data = $request->all();
         Typedepense::create($data);
-        return redirect("listeTypedepense")->with('success', 'Disque ajoute avec succes !');
+        return redirect("listeTypedepense")->with('success', 'ajout avec succes !');
         }
 
         //form vers modifier

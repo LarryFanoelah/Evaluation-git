@@ -49,49 +49,49 @@ insert into genre(sexe) values ('feminin'),('masculin');
 
 create table patient(
     idpatient serial primary key not null,
-    nom varchar,
-    date_naissance date ,
-    remboursement boolean ,
-    idgenre int references genre(idgenre)
+    nom varchar not null,
+    date_naissance date not null ,
+    remboursement boolean not null,
+    idgenre int references genre(idgenre) not null
 );
 
 create table typeDepense(
     idtypedepense serial primary key not null,
-    nom varchar,
-    "type" varchar,
+    nom varchar not null,
+    "type" varchar not null,
      budget  Decimal(15,2) default 0 check (budget>=0),
-     code varchar
+     code varchar not null
 
 );
 
 create table typeRecette (
     idtyperecette serial primary key not null,
-    nom varchar,
-    "type" varchar,
+    nom varchar not null,
+    "type" varchar not null,
     budget Decimal(15,2) default 0 check(budget>=0),
-    code varchar
+    code varchar not null
 );
 
 
 create table depense (
     iddepense serial primary key not null,
-    idtypedepense int references typeDepense (idtypedepense),
-    date_depense date,
-    nombre int default 0,
+    idtypedepense int references typeDepense (idtypedepense) not null,
+    date_depense date not null,
+    nombre int default 1,
     montant Decimal(15,2) default 0 check (montant>=0)
 );
 
 create table facturerecette(
     idfacturerecette serial primary key not null,
-    idpatient int references patient (idpatient),
-    date_facture date
+    idpatient int references patient (idpatient) not null,
+    date_facture date not null
 );
 
 create table recette (
     idrecette serial primary key not null,
-    idtyperecette int references typeRecette (idtyperecette),
-    nombre int default 0,
-    idfacturerecette int references facturerecette(idfacturerecette),
+    idtyperecette int references typeRecette (idtyperecette) not null,
+    nombre int default 1,
+    idfacturerecette int references facturerecette(idfacturerecette) not null,
     montant Decimal(15,2) default 0 check (montant>=0)
 );
 
@@ -133,6 +133,7 @@ JOIN typeRecette tr ON r.idtyperecette = tr.idtyperecette
 JOIN patient p ON fr.idpatient = p.idpatient
 JOIN genre g ON p.idgenre = g.idgenre;
 
+
 -- view pour afficher les mois dans depense
 create or replace view v_date_depense as
 select
@@ -158,7 +159,7 @@ cross join typeRecette tr
 group by annee,mois,tr.idtyperecette;
 
 
--- vue tableau de bord recette
+-- vue tableau de bord recette ,vue entre vuerecettes et v_date_recette
 create or replace view vue_bord_recette as
 select
     vdr.annee,
@@ -174,7 +175,7 @@ on vdr.idtyperecette=vr.idtyperecette
     and vdr.mois=extract(month from date_facture)
 group by vdr.annee,vdr.mois,vdr.idtyperecette,vdr.nom,vdr.budget;
 
---vue tableau de bord depense
+--vue tableau de bord depense, vue entre v_depenses et v_date_depense
 create or replace view vue_bord_depense as
 select
     vdd.annee,

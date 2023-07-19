@@ -47,7 +47,7 @@
                      <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">date facture</label>
                         <div class="col-sm-10" >
-                        <input type="date" name="date_facture" class="form-control">
+                        <input type="date" name="date_facture" value="{{ $data->date_facture }}" class="form-control">
                         </div>
                     </div>
 

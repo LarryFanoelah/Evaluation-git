@@ -11,7 +11,7 @@ class FacturerecetteController extends Controller
 {
                 //liste disque Facturerecette
                 public function listeFacturerecette(){
-                    $perPage = 10; // Nombre d'éléments par page
+                    $perPage = 100; // Nombre d'éléments par page
                     $currentPage = request()->query('page', 1); // Page actuelle
 
                     $liste = vue_facture_patient::paginate($perPage, ['*'], 'page', $currentPage);
@@ -21,7 +21,7 @@ class FacturerecetteController extends Controller
                     ]);
                 }
 
-              
+
 
 
 

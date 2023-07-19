@@ -9,7 +9,7 @@ class TyperecetteController extends Controller
 {
       //liste disque Typerecette
       public function listeTyperecette(){
-        $perPage = 10; // Nombre d'éléments par page
+        $perPage = 100; // Nombre d'éléments par page
         $currentPage = request()->query('page', 1); // Page actuelle
 
         $liste = Typerecette::paginate($perPage, ['*'], 'page', $currentPage);
@@ -39,7 +39,7 @@ class TyperecetteController extends Controller
     public function ajoutTyperecette (Request $request){
         $data = $request->all();
         Typerecette::create($data);
-        return redirect("listeTyperecette")->with('success', 'Disque ajoute avec succes !');
+        return redirect("listeTyperecette")->with('success', 'ajout avec succes !');
         }
 
         //form vers modifier
