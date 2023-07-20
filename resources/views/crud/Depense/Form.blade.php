@@ -25,6 +25,14 @@
             <div class="card-body">
               <h5 class="card-title">Saisie d'un nouveau depense</h5>
 
+{{ csrf_field() }}
+@if(session('erreur'))
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+    {{ session('erreur') }}
+    </div>
+ @endif
+
+
 
 
               <!-- General Form Elements -->

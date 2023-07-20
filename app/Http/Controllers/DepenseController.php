@@ -12,7 +12,7 @@ class DepenseController extends Controller
 {
             //liste disque Depense
             public function listeDepense(){
-                $perPage = 10; // Nombre d'éléments par page
+                $perPage = 100; // Nombre d'éléments par page
                 $currentPage = request()->query('page', 1); // Page actuelle
 
                 $liste = v_depenses::paginate($perPage, ['*'], 'page', $currentPage);
@@ -36,29 +36,103 @@ class DepenseController extends Controller
 
             public function create(Request $request)
             {
-                $mois=$request->input('mois');
-                foreach($mois as $mois){
-                    if (checkdate($mois, $request->input('jour'), $request->input('annee'))==false){
+                $mois = $request->input('mois');
+                $datesInvalides = array();
 
-                        return redirect("listeDepense")->with('erreur','date invalide');
-
+                foreach ($mois as $moisValue) {
+                    if (checkdate($moisValue, $request->input('jour'), $request->input('annee')) == false) {
+                        // Formater la date invalide et la stocker dans le tableau $datesInvalides
+                        $dateInvalide = sprintf("%02d-%02d-%04d", $request->input('jour'), $moisValue, $request->input('annee'));
+                        $datesInvalides[] = $dateInvalide;
                     }
                 }
-                $m=$request->input('mois');
 
-                foreach($m as $mois){
-                    $timestamp = Carbon::create($request->input('annee'), $mois, $request->input('jour'));
-                    $depense=depense::create([
-                        'idtypedepense' =>$request->input('idtypedepense'),
-                        'montant'=>$request->input('montant'),
-                        'nombre'=>$request->input('nombre'),
-                        'date_depense'=>$timestamp
+                if (count($datesInvalides) > 0) {
+                    // Si des dates invalides ont été trouvées, rediriger avec le message d'erreur contenant les dates invalides
+                    $datesInvalidesStr = implode(", ", $datesInvalides);
+                    return redirect()->back()->with('erreur', "Dates invalides : $datesInvalidesStr");
+                }
+
+                $m = $request->input('mois');
+
+                foreach ($m as $moisValue) {
+                    $timestamp = Carbon::create($request->input('annee'), $moisValue, $request->input('jour'));
+                    $depense = depense::create([
+                        'idtypedepense' => $request->input('idtypedepense'),
+                        'montant' => $request->input('montant'),
+                        'nombre' => $request->input('nombre'),
+                        'date_depense' => $timestamp
                     ]);
                 }
 
-                return redirect("listeDepense")->with('success','Information enregistree');
-
+                return redirect()->back()->with('success', 'Informations enregistrées');
             }
+
+ public function create3(Request $request)
+{
+    $mois = $request->input('mois');
+    $annee = $request->input('annee');
+    $dates_correctes = [];
+    $dates_incorrectes = [];
+
+    // Check if $mois is an array before entering the loop
+    if (!is_array($mois)) {
+        return redirect()->back()->with('erreur', 'Le mois doit être un tableau (array) de valeurs.');
+    }
+
+    foreach ($mois as $m) {
+        // Vérifier si le jour est valide pour le mois et l'année donnés
+        if (!checkdate($m, $request->input('jour'), $annee)) {
+            // Remplacer le jour incorrect par le dernier jour du mois de cette date incorrecte
+            $dernier_jour_mois = Carbon::create($annee, $m)->endOfMonth();
+            $jour_correct = $dernier_jour_mois->day;
+            $request->merge(['jour' => $jour_correct]);
+
+            // Ajouter la date incorrecte corrigée au tableau des dates incorrectes
+            // $dates_incorrectes[] = Carbon::create($annee, $m, $jour_correct)->toDateString();
+        } else {
+            // Ajouter la date correcte au tableau des dates correctes
+            $dates_correctes[] = Carbon::create($annee, $m, $request->input('jour'))->toDateString();
+        }
+    }
+
+    // Insérer les dépenses pour les dates correctes
+    foreach ($dates_correctes as $date_correcte) {
+        // Insérer la dépense avec la date correcte dans la base de données
+        $depense = depense::create([
+            'idtype_depense' => $request->input('idtype_depense'),
+            'montant' => $request->input('montant'),
+            'quantite' => $request->input('quantite'),
+            'date_depense' => $date_correcte
+        ]);
+    }
+    foreach ($dates_incorrectes as $dates_incorrectes) {
+        // Insérer la dépense avec la date correcte dans la base de données
+        $depense = depense::create([
+            'idtype_depense' => $request->input('idtype_depense'),
+            'montant' => $request->input('montant'),
+            'quantite' => $request->input('quantite'),
+            'date_depense' => $dates_incorrectes
+        ]);
+    }
+
+
+    // Afficher un message de succès si au moins une date correcte a été insérée
+    if (count($dates_correctes) > 0) {
+        $message = 'Informations enregistrées pour les dates correctes : ' . implode(', ', $dates_correctes);
+        return redirect()->back()->with('success', $message);
+    }
+
+    // Afficher un message de succès si au moins une date incorrecte a été corrigée et insérée
+    if (count($dates_incorrectes) > 0) {
+        $message = 'Informations enregistrées pour les dates incorrectes corrigées : ' . implode(', ', $dates_incorrectes);
+        return redirect()->back()->with('success', $message);
+    }
+
+    // Afficher un message d'échec si aucune date correcte ou incorrecte n'a été insérée
+    return redirect()->back()->with('erreur', ' date incorrect.');
+}
+
 
 
 
